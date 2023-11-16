@@ -1,5 +1,5 @@
-package com.example.employeesjson.controllers;
-import com.example.employeesjson.Person;
+package com.example.employeesjson.controller;
+import com.example.employeesjson.model.Person;
 import com.example.employeesjson.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

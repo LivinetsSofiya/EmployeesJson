@@ -1,21 +1,31 @@
-package com.example.employeesjson;
+package com.example.employeesjson.controller;
 
+import com.example.employeesjson.service.PersonService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@SpringBootTest
+@AutoConfigureMockMvc
 public class PersonControllerTest {
 
+    @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void testPersonJsonFields() throws Exception {
-        // Invoke the controller method directly
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders
-                        .get("/persons/{id}", 1)
+                        .get("/persons", 1)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andReturn()
                 .getResponse();
@@ -28,4 +38,8 @@ public class PersonControllerTest {
         assertThat(response.getContentAsString()).contains("\"id\"");
         assertThat(response.getContentAsString()).contains("\"salary\"");
     }
+
+
+
+
 }

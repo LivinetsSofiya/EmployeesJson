@@ -1,6 +1,6 @@
 package com.example.employeesjson.service;
 
-import com.example.employeesjson.Person;
+import com.example.employeesjson.model.Person;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,8 @@ public class PersonService {
             // Load existing persons from JSON file
             File file = new File(FILE_PATH);
             if (file.exists()) {
-                persons = objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(List.class, Person.class));
+                persons = objectMapper.readValue(file, objectMapper.getTypeFactory().
+                        constructCollectionType(List.class, Person.class));
             } else {
                 persons = new ArrayList<>();
             }
@@ -35,7 +36,7 @@ public class PersonService {
 
 
     public List<Person> getAllPersons() {
-        return persons;
+        return new ArrayList<>(persons);
     }
 
     public Person addPerson(Person person) {
@@ -51,7 +52,6 @@ public class PersonService {
 
     private void savePersons() {
         try {
-            // Save updated persons to the JSON file
             objectMapper.writeValue(new File(FILE_PATH), persons);
         } catch (IOException e) {
             e.printStackTrace();

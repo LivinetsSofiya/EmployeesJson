@@ -1,6 +1,8 @@
-package com.example.employeesjson;
+package com.example.employeesjson.model;
 
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Person {
@@ -63,4 +65,5 @@ public class Person {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
 }
